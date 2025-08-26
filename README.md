@@ -1,6 +1,4 @@
 # CITE243Python
-<h1>
-  Robert's CITE-243 Repository
-</h1>
 
+Robert's CITE-243 Repository
 You can tell because we have folders :)
