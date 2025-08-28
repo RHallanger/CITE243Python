@@ -43,7 +43,7 @@ def looper():
             quit()
 
         case _:
-            pass
+            quit()
 
 def tbd():
     nar('And Stanley...')
@@ -144,6 +144,7 @@ match choice: #Left or Right Results
     case 1: #Left door
         nar('Yet there was not a single person here either.')
         nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
+        nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
         pass
 
     case 2: #Right door
@@ -154,7 +155,7 @@ choice2 = 0
 if choice == 1: #If they chose the left door
     while choice2 not in [1,2,3]: #Next Room Decision from the meeting room
         print('Where does Stanley go now?')
-        print('\n\n1) The Boss\'s Office\n\n2) Downstairs\n\n3) The Broom Closet')
+        print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
         try:
             choice2 = int(input('> '))
 
@@ -180,3 +181,28 @@ match choice2: #Results of Boss's Office, Downstairs, or Broom Closet
         tbd()
     case 3: #Broom Closet
         tbd()
+
+nar('Stepping into his manager\'s office\nStanley was once again stunned to discover not an indication of any human life.')
+nar('Shocked, unraveled, Stanley wondered in disbelief who orchestrated this.')
+nar('What dark secret was being held from him?')
+nar('What he could not have known was that the keypad behind the boss\'s desk guarded the terrible truth that his boss had been keeping from him.')
+nar('And so the boss had assigned it an extra secret pin number: 2-8-4-5')
+nar('But, of course, Stanley couldn\'t possibly have known this.')
+
+while int(keypad) != 2845:
+    print('Enter a four digit code to the keypad.')
+    print('Hint: formated as "1111"')
+    keypad = input('> ')
+
+    if keypad.len() > 4 or keypad.len() < 4:
+        nar('Stanley, it is supposed to be four digits.\nNo less and no more')
+        nar('2-8-4-5')
+
+    if keypad == 2845:
+        nar()
+
+    elif keypad == 8888:
+        nar()
+
+    else:
+        nar('Nothing happened')
