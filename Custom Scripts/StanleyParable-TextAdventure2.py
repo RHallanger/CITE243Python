@@ -1,4 +1,3 @@
-
 from time import sleep
 
 ############################################################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Finish Broom Closet Ending
@@ -7,9 +6,11 @@ from time import sleep
 choice = 0
 loopCheck = 0
 broomClosetCheck = 0
+broomDead = False
 exceptCatch = False
 
 ################################### Functions for me to ease the scripting process###############################
+
 def clear():
     #I couldn't get the import os clear/cls to work so I am just going to use this instead.
     print('\n' * 100 )
@@ -47,10 +48,10 @@ def looper():
             nar('Well Stanley, you ruined my story.')
             nar('Are you happy?')
             nar('Goodbye Stanley...')
-            quit()
+            sceneStart()
 
         case _:
-            quit()
+            sceneStart()
 
 def excepter(var):
     #similar to looper, but this handles if the player inputs anything that isn't a full number
@@ -69,7 +70,7 @@ def excepter(var):
             print('I gave you an additional chance, and you squandered it Stanley.')
             print('Thank you for playing The Stanley Parable: Text Adventure.')
             sleep(5)
-            quit()
+            sceneStart()
 
 def tbd():
     #I put several hours into making the broom closet ending and realized that a lot of paths just don't have an ending yet... soooo placeholder.
@@ -81,10 +82,12 @@ def tbd():
     nar('A student project? Just for fun?!')
     nar('Well Stanley, I guess this is the end of the line for us both.\nMaybe there will be an update in the future?\n\n"Don\'t bet on it."')
     nar('Suffice it to say, thank you for playing The Stanley Parable: Text Adventure.')
-    quit()
+    sceneStart()
 
 def broomLoop(): #Special loop for broom closet
     global broomClosetCheck
+    global loopCheck
+    choice = 0
     while choice not in [1,2]:
         print('What does Stanley do?')
         print('\n\n1) Wait\n\n2) Leave')
@@ -95,19 +98,148 @@ def broomLoop(): #Special loop for broom closet
             loopCheck += 1
             looper()
 
+    if broomClosetCheck >= 7:
+        broomClosetCheck = 7
+        pass
+
+    broomClosetCheck += 1
+    clear()
+
     match choice:
         case 1:
-            broomClosetCheck += 1
             sceneBroomCloset()
         case 2:
-            clear()
-            broomClosetCheck = 100
             scenePostMeeting()
 
+def whiteLoop():
+    choice = 0
+    while choice not in [1,2]:
+        print('Are you sick of this gag?')
+        print('\n\n1) Yes\n\n2) No')
+        try:
+            choice = int(input('> '))
+
+        except:
+            whiteLoop()
+
+        if choice not in [1,2]:
+            whiteLoop()
+
+        match choice:
+            case 1:
+                nar('Well, I don\'t know how to say this politely.')
+                nar('But you could literally just hit the \'x\' and restart the game any old time you want.')
+                nar('Like right now!')
+                nar('You could have done it just then!')
+                nar('Now would also be an appropriate time to quit!')
+                nar('Any of these points, and so many many more, all of them are appropriate!')
+                nar('I\'m enjoying what seems to be an internal conflict going on\nwhere you are literally unable to act on your own desires to restart the game.')
+                nar('So just to push the envelope, I am going to try to make this as miserable as possible, and we\'ll see how long you can maintain.')
+                nar('There once was a man named Stanley, who people consided so manly.')
+                nar('But the truth must be told,\nhe was not very old\nand was quite particularly gangly.')
+                nar('What Stanley liked most was buttons.')
+                nar('He pushed them like some kind of glutton.')
+                nar('He did it all day in a meaningful way\n\nbut his brain had long ceased to function.')
+                nar('Which is why he is in this parable,\nand lives an existence quite terrible\nand if you are not strong,\nand keep playing along,\nyou too will become quite unbearable.')
+                nar('Yeeees!')
+                nar('You too will become quite unbearable!')
+                sleep(999)
+                sceneStart()
+            case 2:
+                nar('Ah, then in that case, we\'ll continue!')
+                nar('But now here comes the real question.')
+                nar('What do you think would have happened if you had told me that you wanted this to stop?')
+                nar('Do you think it would have been particularly different?')
+                nar('Would I have taken the same idea but rephrased it superficially to fit that answer?')
+                nar('Perhaps you never would even have thought of it if I hadn\'t brought up the issue in the first place!')
+                nar('Oh, now think about it.')
+                nar('Will it be worth it for you to restart, and then come back here just to do the other option?')
+                nar('Clearly this whole gag takes some time.')
+                nar('What if the other options is even longer?')
+                nar('How long will you spend in total just to have head all the narration?')
+                nar('Oh- and this is rich...\n\nPerhaps you\'ve just played the other option\n and now you\'ve come to see what happens in this one!')
+                nar('So what do you think, which choice was the better one?')
+                nar('Imagine if you had selected \'continue\' on your first playthrough.')
+                nar('How tantalizing it would be, not knowing what happens when you pick the other option.')
+                nar('Indeed, you are one of the lucky ones.')
+                nar('Though if the other option is really miserable to listen to, then perhaps you\'re not.')
+                nar('In fact, I\'m just going to say that no one who\'s listening to this is lucky.')
+                nar('Well now.\n\nI\'ve built up the other option so much that I\'m going to stop talking and leave you to your decision\nwhether to come back here...')
+                nar('Continue with the game, or just sit in this sport forever.')
+                nar('And ever.')
+                nar('Cheers.')
+                sleep(999)
+                sceneStart()
 
 ################## SCENES MANAGER! ##########################
 
+########## LEFT PATH SCENES ###########
+def sceneStart():
+    clear()
+    sleep(3)
+    nar('Something was very clearly wrong.')
+    nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
+    nar('But as he came to his wits and regained his senses.')
+    nar('He got up from his desk and stepped out of his office.')
+
+    #Alright, first decision time
+    choice = 0
+
+    while choice not in [1,2]:
+        print('What should Stanley do?')
+        print('Hint: Use numbers to indicate your choice.')
+        print('\n\n1) Leave the office\n\n2) Close the door')
+
+        choice = excepter(choice)
+    
+        if choice not in [1,2]:
+            loopCheck += 1
+            looper() #This function will handle the looping and dialogue for invalid options)
+
+        pass
+
+    clear()
+    match choice: #Results of leaving his office
+        case 1: #Leave the office
+            nar('All of his co-workers were gone.\nWhat could it mean?')
+            nar('Stanley decided to go to the meeting room.\n\nPerhaps he had simply missed a memo.')
+            pass
+
+        case 2: #Close the door
+            sceneReluctant()
+
+    choice = 0
+    nar('When Stanley came to a set of two open doors, he enetered the door on his left.')
+
+    while choice not in [1,2]: #Left or Right Decision
+        print('What door does Stanley enter?')
+        print('\n\n1) The Left Door\n\n2) The Right Door')
+
+        try:
+            choice = int(input('> '))
+
+        except:#Go into the white room :)
+            sceneWhiteRoom()
+
+        if choice not in [1,2]:
+            loopCheck += 1
+            looper()
+
+        pass
+
+    clear()
+    match choice: #Left or Right Results
+        case 1: #Left door
+            nar('Yet there was not a single person here either.')
+            nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
+            nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
+            scenePostMeeting()
+
+        case 2: #Right door
+            tbd()
+
 def sceneMindControl():
+    global loopCheck
     choice = 0
     nar('Stanley walked straight ahead through the large door that read:\n\n\'Mind Control Facility\'')
     nar('Push ENTER to turn on the lights...')
@@ -204,8 +336,8 @@ def sceneMindControl():
             nar('But I\'m going to destroy it first, so you can\'t.')
             nar('0:01')
             print('And believe me, I will be laughing at every second of your inevitable life\nfrom the moment we fade in, until the moment I say: \'Happily ever af-\'')
-            sleep(5)
-            quit()
+            sleep(2)
+            sceneStart()
         case 2: #OFF
             ########################################## FREEDOM ENDING ######################################
             nar('Blackness.')
@@ -232,10 +364,11 @@ def sceneMindControl():
             nar('Stanley felt the cool breeze upon his skin, the feeling of liberation, the immense possibility of the new path before him.')
             nar('This was exactly the way, right now, that things were meant to happen.')
             nar('And Stanley was happy.')
-            quit()
+            sceneStart()
 
 def sceneBossOffice():
     keypad = 0
+    keypadIncorrect = 0
     nar('Stepping into his manager\'s office\nStanley was once again stunned to discover not an indication of any human life.')
     nar('Shocked, unraveled, Stanley wondered in disbelief who orchestrated this.')
     nar('What dark secret was being held from him?')
@@ -259,7 +392,7 @@ def sceneBossOffice():
             nar('Really Stanley?\nThose are not numbers.\n\nI am afraid that we will have to put our adventure on hold.')
             nar('Please come back when you have completed the basics to primary school.')
             nar('Thank you for playing The Stanley Parable: Text Advenutre, Non-Baby edition.')
-            quit()
+            sceneStart()
 
         match keypad:
             case 2845:
@@ -381,7 +514,7 @@ def sceneInsanity():
     nar('She had no time for this.')
     nar('So, it was only a moment that she stood there staring down at the body.')
     nar('And then she turned and ran.')
-    quit()
+    sceneStart()
 
 def sceneEscapeRoute():
     global loopCheck
@@ -498,30 +631,76 @@ def sceneMindControlSplit():
 
 def scenePostMeeting():
     global loopCheck
+    global broomDead
+    global broomClosetCheck
+
+    if broomDead == 1:
+        nar('Ah, second player!')
+        nar('It\'s good to have you on board.')
+        nar('I guarantee you can\'t do any worse than the person who came before you.')
+        broomDead = 2
+        pass
+    else:
+        pass
+
     choice = 0
-    while choice not in [1,2,3]: #Next Room Decision from the meeting room
-        print('Where does Stanley go now?')
-        print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
+    if broomDead >= 5:
+        while choice not in [1,2]: #Next Room Decision from the meeting room
+            print('Where does Stanley go now?')
+            print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
 
-        choice = excepter(choice)
+            choice = excepter(choice)
 
-        if choice not in [1,2,3]:
-            loopCheck += 1
-            looper()
+            if choice not in [1,2]:
+                loopCheck += 1
+                looper()
 
-    clear()
-    match choice:
-        case 1: #Boss's Office
-            sceneBossOffice()
+        clear()
+        match choice:
+            case 1: #Boss's Office
+                sceneBossOffice()
 
-        case 2: #Downstairs and Insanity Ending
-            sceneInsanity()
+            case 2: #Downstairs and Insanity Ending
+                sceneInsanity()
 
-        case 3: #Broom Closet
-            sceneBroomCloset()
+    else:
+        while choice not in [1,2,3]: #Next Room Decision from the meeting room
+            print('Where does Stanley go now?')
+            print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
+
+            choice = excepter(choice)
+
+            if choice not in [1,2,3]:
+                loopCheck += 1
+                looper()
+
+        clear()
+        match choice:
+            case 1: #Boss's Office
+                sceneBossOffice()
+
+            case 2: #Downstairs and Insanity Ending
+                sceneInsanity()
+
+            case 3: #Broom Closet
+                sceneBroomCloset()
 
 def sceneBroomCloset():
     global broomClosetCheck
+    global broomDead
+
+    if broomDead == 2:
+        nar('You too?!')
+        nar('I\'m at the mercy of an entire species of invalids.')
+        nar('Perhaps there\'s a monkey nearby you can hand the controls to?\n\nA fish?\n\nA fungus?')
+        nar('Look, you can hammer out the details.')
+        nar('I\'m not particularly picky.')
+        nar('I\'ll just be waiting for when you\'re ready to pick up the story again.')
+        broomDead = 3
+        broomLoop()
+    else:
+        pass
+
     match broomClosetCheck:
         case 0:
             nar('Stanley stepped into the broom closet, but there was nothing here, so he turned around and got back on track.')
@@ -533,11 +712,96 @@ def sceneBroomCloset():
             broomLoop()
         case 2:
             nar('It was baffling that Stanley was still just sitting in the broom closet.')
-            
+            nar('He wasn\'t even doing anything.')
+            nar('At least if there were something to interact with he\'d be justified in some way.')
+            nar('As it is, he\'s literally just standing there, doing sweet F.A.')
+            broomLoop()
+        case 3:
+            nar('Are you...\n\nAre you really still in the broom closet?')
+            nar('Standing around doing nothing?')
+            nar('Why?')
+            nar('Please offer me some explanation here.\n\nI\'m genuinely confused.')
+            broomLoop()
+        case 4:
+            nar('You do realize there\'s no choice or anything in here, right?')
+            nar('If I had said, "Stanley walked past the broom closet."\n\nAt least you would have had a reason for exploring it to find out.')
+            nar('But it didn\'t even occur to me because literally this closet is of absolutely no significance to the story whatsoever.')
+            nar('I never would have thought to mention it.')
+            broomLoop()
+        case 5:
+            nar('Maybe to you, this is somehow its own branching path.')
+            nar('Maybe, when you go talk about this with your friends, you\'ll say:')
+            nar('"OH, DID U GET THE BROOM CLOSET ENDING? THEB ROOM CLOSET ENDING WAS MY FAVRITE!1 XD"\n\n...I hope your friends find this concerning.')
+            broomLoop()
+        case 6:
+            nar('Stanley was fat and ugly and really, really stupid.')
+            nar('He probably only got the job because of a family connection.\n\nThat\'s how stupid he is.')
+            nar('That, or with drug money.\n\nAlso, Stanley is addicted to drugs and hookers.')
+            broomLoop()
+        case 7:
+            nar('Well, I\'ve come to a very definite conclusion about what\'s going on right now.')
+            nar('You\'re dead.')
+            nar('You got to this broom closet.\nExplored it a bit.\nAnd were about to leave because there\'s nothing here.')
+            nar('When a physical malady of some sort shut down your central nervous system and you collapsed on the keyboard.')
+            nar('Well, in a situation like this, the responsible thing is to alert someone nearby.\nSo, as to ensure that your body is taken care of before it begins to decompose.')
+            nar('HELLO!? ANYONE WHO HAPPENS TO BE NEARBY!!\n\nTHE PERSON AT THIS COMPUTER IS DEAD!!')
+            nar('HE OR SHE HAS FALLEN PREY TO ANY NUMBER OF YOUR COUNTLESS HUMAN PHYSIOLOGICAL VULNERABILITIES.')
+            nar('IT\'S INDICATIVE OF THE LONG-TERM SUSTAINABILITY OF YOUR SPECIES.')
+            nar('PLEASE REMOVE THEIR CORPSE FROM THE AREA AND INSTRUCT ANOTHER HUMAN TO TAKE THEIR PLACE AT THE COMPUTER.')
+            nar('MAKING SURE THEY UNDERSTAND BASIC TEXT-BASED VIDEO GAME MECHANICS, AND FILLING THEM IN ON THE HISTORY OF NARRATIVE TROPES IN VIDEO GAMING.')
+            nar('SO THAT THE IRONY AND INSIGHTFUL COMMENTARY OF THIS GAME IS NOT LOST ON THEM.')
+            nar('Alright, when you\'ve done that, just step out into the hallway.')
+            broomDead = 1
+            broomLoop()
+        case 8:
+            nar('...')
+            broomLoop()
 
-clear() #This one is just to frame the text at the bottom of the screen
+def sceneWhiteRoom():
+    print('Traceback most recent call last File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 198, in _run_module_as_main return _run_code code, main_globals, None, __main__, mod_spec File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 88, in _run_code exec code, run_globals File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher....debugpy __main__.py, line 71, in module cli.main File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 501, in main run File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 351, in run_file runpy.run_path target, run_name=__main__' * 4)
+    sleep(2)
+    clear()
+    nar('At first, Stanley assumed he\'d broken the game.')
+    nar('Until he heard this narration and realized it was a part of the game\'s design all along.')
+    nar('He then praised the game for its insightful and witty commentary into the nature of video game structure.')
+    nar('And its examination of structural narrative tropes.')
+    nar('So, now that you\'re here, what do you think?')
+    nar('Isn\'t this a fun and unique set of dialogue to see?')
+    nar('Why don\'t we jsut take a minute just to drink it all in!')
+    nar('Okay, I\'m over it now.')
+    nar('What do you think?\n\nAre you sick of this gag yet?')
+    whiteLoop()
+
+def sceneReluctant():
+    nar('But Stanley simply couldn\'t handle the pressure.')
+    nar('What if he had to make a decision?')
+    nar('What if a crucial outcome fell under his responsibility?')
+    nar('He had never been trained for that!')
+    nar('No, this couldn\'t go any way except badly.')
+    nar('The thing to do now, Stanley thought to himself, is to wait.')
+    nar('Nothing will hurt me.\n\nNothing will break me.')
+    nar('In here, I can be happy, forever.')
+    nar('I will be happy.')
+    nar('Stanley waited.')
+    nar('Hours passed.')
+    nar('Then days.')
+    nar('Had years gone by?')
+    nar('He no longer had the ability to tell.')
+    nar('But the one thing he knew, for sure, beyond any doubt,\nwas that if he waited long enough,\nthe answers would come.')
+    nar('Eventually, some day, they would arrive.')
+    nar('Soon...')
+    nar('Very soon now...')
+    nar('This will end.')
+    nar('He will be spoken too.')
+    nar('He will be told what to do.')
+    nar('Now it\'s just a little bit closer.')
+    nar('Now it\'s even closer.')
+    nar('Here it comes...')
+    sceneStart()
+
+clear() #This is the game! just kidding, it is all locked in scene functions...
 print('This is the story of a man named Stanley.')
-input('Press ENTER to continue...')
+input('\nPress ENTER to continue...')
 clear()
 nar('Stanley worked for a company in a big building where he was Employee Number 427.')
 nar('Employee Number 427\'s job was simple.\nHe sat at his desk in Room 427, and he pushed buttons on a keyboard.')
@@ -552,86 +816,4 @@ nar('Something that he would never quite forget.')
 nar('He had been at his desk for nearly an hour.\nWhen he realised that not one single order had arrived on his monitor for him to follow.')
 nar('No one had showed up to give him instructions.\n\nCall a meeting.\n\nOr even say hi.')
 nar('Never in all his years at the company had this happened.\nThis complete isolation.')
-nar('Something was very clearly wrong.')
-nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
-nar('But as he came to his wits and regained his senses.')
-nar('He got up from his desk and stepped out of his office.')
-
-#Alright, first decision time
-#These variables seem very self 
-choice = 0
-
-while choice not in [1,2]: #This will let them keep looping until an option is selected
-    print('What should Stanley do?')
-    print('Hint: Use numbers to indicate your choice.')
-    print('\n\n1) Leave the office\n\n2) Close the door')
-
-    choice = excepter(choice)
-    
-    if choice not in [1,2]:
-        loopCheck += 1
-        looper() #This function will handle the looping and dialogue for invalid options)
-
-    pass
-
-clear()
-match choice: #Results of leaving his office
-    case 1: #Leave the office
-        nar('All of his co-workers were gone.\nWhat could it mean?')
-        nar('Stanley decided to go to the meeting room.\n\nPerhaps he had simply missed a memo.')
-        pass
-
-    case 2: #Close the door
-        tbd()
-
-choice = 0 #Now is the important moment in a coders life to choose, nest hell or variable hell... We will see
-nar('When Stanley came to a set of two open doors, he enetered the door on his left.')
-
-while choice not in [1,2]: #Left or Right Decision
-    print('What door does Stanley enter?')
-    print('\n\n1) The Left Door\n\n2) The Right Door')
-
-    choice = excepter(choice)
-
-    if choice not in [1,2]:
-        loopCheck += 1
-        looper()
-
-    pass
-
-clear()
-match choice: #Left or Right Results
-    case 1: #Left door
-        nar('Yet there was not a single person here either.')
-        nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
-        nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
-        pass
-
-    case 2: #Right door
-        tbd()
-
-choice2 = 0
-
-#####################################LEFT DOOR PATH#####################################
-if choice == 1: #If they chose the left door
-    while choice2 not in [1,2,3]: #Next Room Decision from the meeting room
-        print('Where does Stanley go now?')
-        print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
-
-        choice2 = excepter(choice2)
-
-        if choice2 not in [1,2,3]:
-            loopCheck += 1
-            looper()
-    pass
-
-clear()
-match choice2: #Results of Boss's Office, Downstairs, or Broom Closet
-    case 1: #Boss's Office
-        sceneBossOffice()
-
-    case 2: #Downstairs and Insanity Ending
-        sceneInsanity()
-
-    case 3: #Broom Closet
-        tbd()
+sceneStart()
