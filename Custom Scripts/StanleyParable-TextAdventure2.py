@@ -3,10 +3,10 @@ from time import sleep
 ############################################################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Finish Broom Closet Ending
 
 #### Variables that are used :)
-choice = 0
 loopCheck = 0
 broomClosetCheck = 0
 broomDead = False
+blueCheck = 0
 exceptCatch = False
 
 ################################### Functions for me to ease the scripting process###############################
@@ -125,6 +125,7 @@ def whiteLoop():
         if choice not in [1,2]:
             whiteLoop()
 
+        clear()
         match choice:
             case 1:
                 nar('Well, I don\'t know how to say this politely.')
@@ -171,6 +172,75 @@ def whiteLoop():
                 sleep(999)
                 sceneStart()
 
+def blueLoop():
+    global loopCheck
+    global blueCheck
+    choice = 0
+
+    match blueCheck:
+        case 0:
+            while choice not in [1,2]:
+                print('Where does Stanley go now?')
+                print('\n\n1) Red Door\n\n2) Blue Door')
+
+                choice = excepter(choice)
+
+                if choice not in [1,2]:
+                    loopCheck += 1
+                    looper()
+        case 1:
+            nar('Uh-heh\n\nPerhaps you misunderstood.')
+            nar('Stanley walked through the RED door.')
+            while choice not in [1,2]:
+                print('Where does Stanley go now?')
+                print('\n\n1) Red Door\n\n2) Blue Door')
+
+                choice = excepter(choice)
+
+                if choice not in [1,2]:
+                    loopCheck += 1
+                    looper()
+        case 2:
+            nar('I still don\'t think we are communicating properly.')
+            nar('STANLEY WALKED THROUGH THE RED DOOR.')
+            while choice not in [1,2]:
+                print('Where does Stanley go now?')
+                print('\n\n1) Red Door')
+
+                choice = excepter(choice)
+
+                if choice not in [1,2]:
+                    loopCheck += 1
+                    looper()
+
+    clear()
+    match choice:
+        case 1: #Red Door
+            tbd()
+            #sceneShortcut()
+
+        case 2: #Blue Door
+            if blueCheck >= 2:
+                nar('Alright, fine, go ahead Stanley.')
+                nar('You want to know so badly what\'s out there?')
+                nar('You want to find out what lies at the end of this road you chosen?')
+                nar('Well, don\'t let me stop you.')
+                nar('You see... There\'s nothing here.')
+                nar('I haven\'t even finished building this section of the map.')
+                nar('Because you were never supposed to be here in the first place.')
+                nar('Cyclical dialogue and boring descriptions of what the room should look like.')
+                nar('Is this what you wanted?')
+                nar('Was it worth ruining the entire story I had written out specifically for you.')
+                nar('Do you not think I put a lot of time into that?')
+                nar('Because I did.\n\nAnd in the end it was all for nothing because this is what you wanted to see.')
+                nar('Help me here Stanley.\nHelp elucidate these strange and unknowable desires of yours.')
+                nar('What would have made this game better?')
+                nar('What did you want to see?')
+                nar('Vehicles?\nSkill trees?\nTextures?')
+                nar('Work with me, you have given me absolutely nothing so far.')
+                tbd()
+            blueCheck += 1
+            blueLoop()
 ################## SCENES MANAGER! ##########################
 
 ########## LEFT PATH SCENES ###########
@@ -236,7 +306,7 @@ def sceneStart():
             scenePostMeeting()
 
         case 2: #Right door
-            tbd()
+            sceneLounge()
 
 def sceneMindControl():
     global loopCheck
@@ -644,46 +714,27 @@ def scenePostMeeting():
         pass
 
     choice = 0
-    if broomDead >= 5:
-        while choice not in [1,2]: #Next Room Decision from the meeting room
-            print('Where does Stanley go now?')
-            print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
 
-            choice = excepter(choice)
+    while choice not in [1,2,3]: #Next Room Decision from the meeting room
+        print('Where does Stanley go now?')
+        print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
 
-            if choice not in [1,2]:
-                loopCheck += 1
-                looper()
+        choice = excepter(choice)
 
-        clear()
-        match choice:
-            case 1: #Boss's Office
-                sceneBossOffice()
+        if choice not in [1,2,3]:
+            loopCheck += 1
+            looper()
 
-            case 2: #Downstairs and Insanity Ending
-                sceneInsanity()
+    clear()
+    match choice:
+        case 1: #Boss's Office
+            sceneBossOffice()
 
-    else:
-        while choice not in [1,2,3]: #Next Room Decision from the meeting room
-            print('Where does Stanley go now?')
-            print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
+        case 2: #Downstairs and Insanity Ending
+            sceneInsanity()
 
-            choice = excepter(choice)
-
-            if choice not in [1,2,3]:
-                loopCheck += 1
-                looper()
-
-        clear()
-        match choice:
-            case 1: #Boss's Office
-                sceneBossOffice()
-
-            case 2: #Downstairs and Insanity Ending
-                sceneInsanity()
-
-            case 3: #Broom Closet
-                sceneBroomCloset()
+        case 3: #Broom Closet
+            sceneBroomCloset()
 
 def sceneBroomCloset():
     global broomClosetCheck
@@ -757,6 +808,7 @@ def sceneBroomCloset():
             nar('...')
             broomLoop()
 
+#Not technically left path, but I got them here...
 def sceneWhiteRoom():
     print('Traceback most recent call last File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 198, in _run_module_as_main return _run_code code, main_globals, None, __main__, mod_spec File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 88, in _run_code exec code, run_globals File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher....debugpy __main__.py, line 71, in module cli.main File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 501, in main run File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 351, in run_file runpy.run_path target, run_name=__main__' * 4)
     sleep(2)
@@ -767,7 +819,7 @@ def sceneWhiteRoom():
     nar('And its examination of structural narrative tropes.')
     nar('So, now that you\'re here, what do you think?')
     nar('Isn\'t this a fun and unique set of dialogue to see?')
-    nar('Why don\'t we jsut take a minute just to drink it all in!')
+    nar('Why don\'t we just take a minute just to drink it all in!')
     nar('Okay, I\'m over it now.')
     nar('What do you think?\n\nAre you sick of this gag yet?')
     whiteLoop()
@@ -798,6 +850,86 @@ def sceneReluctant():
     nar('Now it\'s even closer.')
     nar('Here it comes...')
     sceneStart()
+
+########## RIGHT PATH SCENES ###########
+
+def sceneLounge():
+    global loopCheck
+    choice = 0
+    nar('This was not the correct way to the meeting room and Stanley knew it perfectly well.')
+    nar('Perhaps he wanted to stop by the employee lounge first.\n\nJust to admire it.')
+    nar('Ah, yes.\n\nTruly a room worth admiring.')
+    nar('It had really been worth the detour after all.')
+    nar('Just to spend a few moments here in this immaculate, beautifully constructed room.')
+    nar('Stanley simply stood here, drinking it all in')
+    nar('But eager to get back to business, Stanley took the first open door on his left.')
+    while choice not in [1,2]:
+        print('Where does Stanley go now?')
+        print('\n\n1) Shortcut\n\n2) Warehouse')
+
+        choice = excepter(choice)
+
+        if choice not in [1,2]:
+            loopCheck += 1
+            looper()
+
+    clear()
+    match choice:
+        case 1: #Shortcut to Left
+            tbd()
+            #sceneShortcut()
+
+        case 2: #Warehouse
+            sceneWarehouse()
+
+def sceneWarehouse():
+    global loopCheck
+    choice = 0
+    nar('Stanley was so bad at following directions,\nit\'s incredible he wasn\'t fired years ago.')
+    while choice not in [1,2,3]: #Next Room Decision from the meeting room
+        print('Where does Stanley go now?')
+        print('\n\n1) Cargo Lift\n\n2) Down?')
+
+        try:
+            choice = int(input('> '))
+
+        except:
+            sceneBlueDoor()
+
+        if choice not in [1,2]:
+            loopCheck += 1
+            looper()
+
+    clear()
+    match choice:
+        case 1: #Cargo Lift
+            nar('Look Stanley, I think perhaps we\'ve gotten off on the wrong foot here.')
+            nar('I\'m not your enemy.')
+            nar('Really, I\'m not.')
+            nar('I realize investing your trust in someone else can be difficult.')
+            nar('But the fact is that the story has all been about nothing but you all this time.')
+            nar('There someone you\'ve been neglecting Stanley?')
+            tbd()
+            #scenePhone
+
+        case 2: #Down
+            tbd()
+            #sceneDown
+
+def sceneBlueDoor():
+    global loopCheck
+    choice = 0
+    nar('Really?!')
+    nar('I was in the middle of something.')
+    nar('Do you have zero consideration for others?')
+    nar('Are you that convinced that I want something bad to happen to you?')
+    nar('We-I dunno how to convince you of this, but I really do want to help you.\n\nTo show you something beautiful.')
+    nar('Let me prove it.')
+    nar('Let me prove that I\'m on your side.\nGive me a chance.')
+    nar('Now listen carefully, this is important.')
+    nar('Stanley walked through the red door.')
+    blueLoop()
+
 
 clear() #This is the game! just kidding, it is all locked in scene functions...
 print('This is the story of a man named Stanley.')
