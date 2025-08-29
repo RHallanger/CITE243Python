@@ -14,10 +14,6 @@ elif username == 'admin':
     print('You got password wrong!\nI mean, you got the password wrong.\nAccess denied!')
     exit()
 
-elif username == 'steve':
-    print('Did you hear Steve Jobs died of Ligma? LIGMA BALLS\nAccess denied!')
-    exit()
-
 elif username == 'walter':
     print('Is it time to cook?')
     exit()
