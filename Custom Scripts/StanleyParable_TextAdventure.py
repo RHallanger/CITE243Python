@@ -1,8 +1,7 @@
 from time import sleep
 import webbrowser
 
-########################################### Continue sceneGames()
-########################################### Still need to make Confusion ending
+########################################### Continue sceneConfusion()
 
 #### Variables that are used :)
 loopCheck = 0
@@ -2440,7 +2439,7 @@ def sceneConfusion():
     nar('From here, it\'s um... left.')
     nar('Oh, no, no.\n\nIt\'s to the right, my mistake.')
     nar('No! No, no, no!')
-    nar('Not the right!\/Why would I have ever said that it was to the right?')
+    nar('Not the right!\nWhy would I have ever said that it was to the right?')
     nar('What was I thinking?')
     nar('It\'s clearly...\nOh dear, would you hold on for a minute, please?')
     nar('Now, let\'s see...\nWe went, um...')
@@ -2476,7 +2475,7 @@ def sceneConfusion():
     nar('Stanley, did you change anthing when we were back in that room with all the monitors?')
     nar('Did you move the story somewhere, or...')
     nar('Hold on, why am I asking you?')
-    nar('I\'m the onw who wrote the story.')
+    nar('I\'m the one who wrote the story.')
     nar('It was right here a minute ago.')
     nar('I know for sure that it\'s here somewhere.')
     nar('Okay, then, it\'s an adventure!')
@@ -2490,14 +2489,15 @@ def sceneConfusion():
         choice = input('> ')
         if searchLoop >= 10:
             break
-        seachLoop += 1
+        searchLoop += 1
 
+    clear()
     nar('I\'ll say it...')
     nar('This is the worst adventure I\'ve ever been on.')
     nar('I can promise you, there definitely was a story here before.')
     nar('Do we just...\nDo we need to restart the game again?')
     nar('Well, I find it unlikely that we\'ll ever progress by starting over and over again.')
-    nar('But it\'s got to be better than tis.')
+    nar('But it\'s got to be better than this.')
     nar('Okay, let\'s give it a shot.\n\nWhy not?')
     sleep(3)
     nar('Something was very clearly wrong.')
@@ -2513,8 +2513,9 @@ def sceneConfusion():
     nar('Aha! I knew we\'d miss something!')
     nar('The story!')
     nar('Here it comes!')
-    nar('No, wait, nevermind, not the stoey.')
+    nar('No, wait, nevermind, not the story.')
     nar('Okay, let\'s head back the other way and retrace our steps.')
+    ################################ Continue Here
 
 clear() #This is the game! just kidding, it is all locked in scene functions...
 print('This is the story of a man named Stanley.')
