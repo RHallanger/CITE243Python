@@ -1,6 +1,9 @@
 from time import sleep
 import webbrowser
 
+########################################### Continue sceneGames()
+########################################### Still need to make Confusion ending
+
 #### Variables that are used :)
 loopCheck = 0
 broomClosetCheck = 0
@@ -10,7 +13,24 @@ workCheck = 0
 redCheck = 0
 exceptCatch = False
 
-################################### Functions for me to ease the scripting process###############################
+################################### Functions ###############################
+
+def mess(text):
+    replacements = {
+        'a': '@',
+        'i': '1',
+        'e': '3',
+        's': '5',
+        'o': '0',
+        'l': '7',
+        'v': '>',
+        'u': 'v',
+        }
+    for oldChar, newChar in replacements.items():
+        text = text.replace(oldChar, newChar)
+
+    text = text.upper()
+    nar(text)
 
 def dance():
     print(''' ..        .      .                     .   .    
@@ -1099,7 +1119,8 @@ def blueLoop():
                 nar('What did you want to see?')
                 nar('Vehicles?\nSkill trees?\nTextures?')
                 nar('Work with me, you have given me absolutely nothing so far.')
-                tbd()
+                nar('Tell you what,\nlet me take a stab in the dark at a new design and you can give me some feedback.')
+                sceneGames()
             blueCheck += 1
             blueLoop()
 
@@ -1212,16 +1233,17 @@ def workLoop(text, key):
 ########## LEFT PATH SCENES ###########
 def sceneStart():
     global loopCheck
+    global broomClosetCheck
     clear()
     sleep(3)
     nar('Something was very clearly wrong.') #Something's wrong, that's what it felt like anyway. I watched all of the endless 8...
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
     nar('He got up from his desk and stepped out of his office.')
-
+    if broomClosetCheck >= 3:
+        broomClosetCheck = 4
     #Alright, first decision time
     choice = 0
-
     while choice not in [1,2]:
         print('What should Stanley do?')
         print('Hint: Use numbers to indicate your choice.')
@@ -1682,15 +1704,27 @@ def scenePostMeeting():
 
     choice = 0
 
-    while choice not in [1,2,3]: #Next Room Decision from the meeting room
-        print('Where does Stanley go now?')
-        print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
+    if broomClosetCheck == 4:
+            while choice not in [1,2]: #Next Room Decision from the meeting room
+            print('Where does Stanley go now?')
+            print('\n\n1) Upstairs\n\n2) Downstairs\n\n')
 
-        choice = excepter(choice)
+            choice = excepter(choice)
 
-        if choice not in [1,2,3]:
-            loopCheck += 1
-            looper()
+            if choice not in [1,2]:
+                loopCheck += 1
+                looper()
+
+    else:
+        while choice not in [1,2,3]: #Next Room Decision from the meeting room
+            print('Where does Stanley go now?')
+            print('\n\n1) Upstairs\n\n2) Downstairs\n\n3) The Broom Closet')
+
+            choice = excepter(choice)
+
+            if choice not in [1,2,3]:
+                loopCheck += 1
+                looper()
 
     clear()
     match choice:
@@ -2087,13 +2121,185 @@ def sceneUnplugged():
     nar('Please observe this helpful instructional video.')
     webbrowser.open_new_tab("https://www.youtube.com/watch?v=_gtQDUusd2Q")
     sleep(102)
-    nar('@h, welcome b@ck.')
-    nar('Y0u m@y h@ve n0ticed th@t this di@l0gue h@s begun to deteri0r@te @s @ result 0f n@rr@tive c0ntr@dicti0n.')
-    nar('But n0t t0 w0rry.\n\nN0w th@t y0u\'r3 pr0p3rly inf0rm3d 0n g00d d3cisi0n m@king...')
-    nar('W3\'r3 g01ng t0 r3v1s1t @ ch01c3 y0u m@d3 just @ f3w m1nut3s @go, @nd s33 wh@t th3 c0rr3ct th1ng t0 d0 w0uld\'v3 b33n.')
-    nar('Th15 w@y, pl3@53.')
-    nar('n0w th@t w3 kn0w y0ur ch01c3s @r3')
-    tbd()
+    ### Phase 1 leet : 1 and 0
+    nar('Ah, welcome back.')
+    nar('Y0u may have n0t1ced that th1s d1al0gue has begun t0 deter10rate as a result 0f narrat1ve c0ntrad1ct10n.')
+    nar('But n0t t0 w0rry.\n\nN0w that y0u\'re pr0perly 1nf0rmed 0n g00d dec1s10n mak1ng...')
+    nar('We\'re g01ng t0 rev1s1t a ch01ce y0u mad3 just a few m1nutes ago, and see what the c0rrect th1ng t0 d0 w0uld\'ve been.')
+    nar('Th1s way, please.')
+    ### Phase 2 leet: 3s and 5s
+    nar('N0w that w3 kn0w y0ur ch01c35 ar3 m3an1gful,\nw3 can\'t hav3 y0u jump1ng 0ff th3 platf0rm and dy1ng!')
+    nar('1mag1n3 th3 ma1n charact3r dy1ng 53n53l355ly halfway thr0ugh th3 5t0ry!')
+    nar('That 5t0ry w0uld mak3 n0 53n53 at all!')
+    nar('W3 just n33d t0 get y0u h0me a5 500n a5 p0551bl3 b3f0r3 th3 narrat1v3 c0ntrad1ct10n g3t5 any w0r53.')
+    nar('Unf0rtunat3ly, 1t 533m5 th15 plac3 15 n0t w3ll-3qu1pp3d t0 d3al w1th r3al1ty.')
+    ### Phase 3 leet: @s
+    nar('@lm05t th3r3!\n\nY0u\'ll t@k3 th3 d00r 0n th3 l3ft, b@ck t0 th3 c0rr3ct 3nd1ng.')
+    nar('Th3 5t0ry w1ll h@v3 r350lut10n 0nc3 @g@1n,\n@nd y0u\'ll b3 h0m3 fr33 1n th3 r3@l w0rld!')
+    nar('N0w r3m3mb3r, @ll y0u n33d t0 d0 15 b3h@v3 3x@ctly @5 5t@nl3y w0uld.')
+    nar('Th@t m3@n5 ch00s1ng r35p0n51bly @nd @lw@y5 putt1ng th3 5t0ry f1r5t.')
+    nar('1\'m qu1t3 5ur3 y0u\'ll b3 up t0 th3 t@sk;\nJu5t f0ll0w my l3@d @nd y0u\'ll b3 f1n3.')
+    nar('@lr1ght, hmmph hmm...')
+    nar('Wh3n 5t@nl3y c@m3 t0 @ 53t 0f tw0 0p3n d00rs,\nh3 3nt3r3d th3 d00r 0n h1s l3ft.')
+    sceneChoiceSplit()
+
+def sceneChoiceSplit():
+    global loopCheck
+    choice = 0
+    while choice not in [1,2]:
+        print('Wh3r3 d035 5t@nl3y g0?')
+        print('\n\n1) L3FT D00R \n\n2) R1GHT D00R')
+
+        choice = excepter(choice)
+
+        if choice not in [1,2]:
+            sceneChoiceSplit()
+
+    clear()
+    match choice:
+        case 2:
+            nar('N0!\n\nWHY D1D Y0U D0 TH@T?')
+            nar('QU1CKLY, HURRY B@CK 1N TH3 0TH3R D1R3CT10N.\nP3RH@P5 W3\'R3 N0T T00 L@T3.')
+            nar('UGH! 1T\'5 RU1N3D!')
+            nar('Y0U-')
+            nar('1 C@N\'T B3L13>3 @FT3R 3>3RYTH1NG W3 T@LK3D @B0UT TH@T Y0V -')
+            nar('MY 5T0RY!\n\nY0V\'>3 D35TR0Y3D MY W0RK!')
+            nar('WHY?\n\nF0R WH@T?!\n\nWH@T D1D Y0V G3T 0VT 0F TH@T?')
+            nar('WH@T D1D Y0V TH1NK W@5 50 5P3C1@L @B0VT 5331NG TH3 G@M3 VND0N3?')
+            nar('L3FT H3R3 L1K3 50 MVCH G@RB@G3,\n1T-\n\nW3LL, 1T\'5 W0RTHL355 N0W!')
+            nar('@ND WH@T @M 1 5VPP053D T0 D0?')
+            nar('3V3N 1F TH3R3 W3R3 @ W@Y T0 C0NT1NV3,\nW0VLD 1T B3 W0RTH 1T?')
+            nar('T0 KN0W TH@T MY 5T0RY 15 N0W 1NC0RR3CT?')
+            nar('H0W C@N 1 G0 B@CK T0 TH@T?')
+            nar('1 C@N\'T 3R@53 TH@T KN0WL3DG3.')
+            mess('i\'ll have to live with it forever.')
+            mess('reliving its impossibility forever.')
+            mess('i couldn\'t live that way.')
+            mess('is it better to shut the game down entirely?\n\nto willingly destroy all of my work?')
+            mess('i don\'t know...\n\nwhat\'s the answer?')
+            mess('what do i do, what do i do, what do i - ?')
+            mess('no i have to.')
+            mess('i have to shut the game down.')
+            mess('i have to.')
+            mess('i have to!')
+            print('Traceback most recent call last File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 198, in _run_module_as_main return _run_code code, main_globals, None, __main__, mod_spec File C Users Stanley AppData Local Programs Python Python313 Lib runpy.py, line 88, in _run_code exec code, run_globals File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher....debugpy __main__.py, line 71, in module cli.main File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 501, in main run File c program files microsoft visual studio 2022 community common7 ide extensions microsoft python core debugpy launcher .. .. debugpy .. debugpy server cli.py, line 351, in run_file runpy.run_path target, run_name=__main__' * 4)
+            sleep(2)
+            clear()
+            mess('wooooooahhhhh!\n\ni\'m-\ni\'m here.')
+            mess('i\'m still here.')
+            mess('here in this pile of rubbish.')
+            mess('with you.')
+            mess('you, who thought you were so clever!')
+            mess('now look where we are.')
+            mess('my entire game is destroyed.')
+            mess('it was the only thing in the world that was mine, and you\'ve run it into the ground.')
+            mess('what, did you think that would be funny?\n\nyou just had to see?')
+            mess('didn\'t i impress upon you how important it was to be like stanley?')
+            mess('he actually knows how to do what i tell him to.')
+            mess('he understands that if i say to do something, there\'s a damn good reason for it!')
+            mess('that thought hadn\'t even occurred to you, had it?')
+            mess('that there\'s a world outside of you?')
+            mess('you\'re a child.')
+            mess('ohhh, my story.')
+            mess('if you\'d just gone through the door on the left you would have seen it.')
+            mess('there was a whole underground facility.\n\nyou would have destroyed it and been victorious.')
+            mess('it would have been so perfect!\n\ni worked so hard on it!')
+            print('1 TR13D H@RD T0 M@K3-')
+            sleep(1)
+            clear()
+            sceneChoiceSplit()
+
+        case 1:
+            nar('Yet there was not a single person here either.')
+            nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
+            nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
+            nar('Stepping into his manager\'s office\nStanley was once again stunned to discover not an indication of any human life.')
+            nar('Shocked, unraveled, Stanley wondered in disbelief who orchestrated this.')
+            nar('Until he saw the door with a voice receiver next to it.')
+            nar('Surely behind this door lay all the answers to his questions.')
+            nar('And beyond all probability, he knew the passcode.')
+            nar('He had seen it on his boss\'s computer just last week.')
+            nar('"NIGHT SHARK 1-1-5."')
+            nar('Was this the code to open the door?\n\nWould it still work?')
+            nar('There was only one way to find out.')
+            nar('Stanley had been trained never to speak up.')
+            nar('But now he would draw from within himself the courage to face the unknown.')
+            nar('He drew a sharp breath, and then spoke the code.')
+            sleep(5)
+            nar('Stanley spoke the code:\n"NIGHT SHARK 1-1-5."')
+            nar('He spoke it into the receiver right there on the wall.')
+            nar('I\'m sorry, is there a problem?')
+            nar('You didn\'t mishear me, did you?')
+            nar('Please, speak the code into the receiver.')
+            nar('Otherwise we can\'t get on with the story.')
+            nar('This is a crucial step.')
+            sleep(3)
+            nar('Okay.\nFine.\n\nYou\'re not going to do it.')
+            nar('But you know what?')
+            nar('It\'s pretty huimiliating to bring you this far only for you to suddenly decide you have better things to do.')
+            nar('I asked you for this one single thing- for your respect.')
+            nar('The kind of respect Stanley shows for his choices.')
+            nar('He knows what it means to take a story seriously.')
+            nar('If you didn\'t want to see what I had to show you, then why did you come here?')
+            nar('You had a choice, you know.')
+            nar('You could have gone through the door on the right!')
+            nar('You could have done whatever the hell you wanted over there!')
+            nar('Why did you come this way?')
+            nar('Speak!\nSay something to me!\nExplain yourself!')
+            nar('You coward!\nYou-')
+            sleep(3)
+            nar('"When Stanley came to a set of two open doors, he entered the door on his left."')
+            nar('"Stanley?"\n"Hello?"\n"Are you-"')
+            nar('"Is everything okay?"')
+            nar('"Stanley, please, I need you to make a choice."')
+            nar('"I need you to walk through the door."')
+            nar('"Are you listening to me?"\n\n"Can you hear me?"')
+            nar('"Is everything alright?"')
+            nar('"Stanley, this is important."')
+            nar('"The story needs you."\n"It needs you to make a decision."')
+            nar('"It cannot exist without you."\n"Do you understand me?"')
+            nar('"Whatever choice you make is just fine, they are both correct;"\n"You cannot be wrong here."')
+            nar('"We can work together;"\n"I\'ll accept whatever you do."\n"I simply need you to take a step forward."')
+            nar('"Please?"\n\n"Choose?"')
+            nar('"Do something."')
+            nar('"Anything."')
+            nar('"This is more important than you can ever know."')
+            nar('"I need this."')
+            nar('"The story needs it."')
+            nar('"So... you hear me?"')
+            nar('"Are you there?"\n\n"Are you listening to this?"\n\n"Stanley, are you there?"')
+            nar('"I... okay."')
+            nar('"It\'s okay, I can wait."')
+            nar('"You need time to decide, time to make sure your choice is correct."')
+            nar('"That is the best choice."')
+            nar('"That\'s alright."')
+            nar('"I\'ll wait for you to decide what\'s the right thing to do."')
+            nar('"Take as much time as you need."')
+            sceneStart()
+
+def sceneGames():
+    global loopCheck
+    choice = 0
+    nar('There we go,\na third option.')
+    nar('This already feels leaps ahead of where we were before.')
+    nar('Go ahead Stanley.')
+    while choice not in [1,2,3]:
+        print('Which door does Stanley choose?')
+        print('1) The Left Door\n\n2) The Right Door\n\n3) The New Door')
+
+        if choice not in [1,2,3]:
+            loopCheck += 1
+            looper()
+
+    clear()
+    nar('Okay, I\'m going to stop you there.')
+    nar('Now, tell me about your experience with this new version.')
+    nar('Would you say that the game benefitted from allowing you more choices?')
+    nar('Feel free to be honest.\n\nI am looking for some real, critical feedback here.')
+    choice = 0
+    while choice not in [1,2,3,4,5]:
+        print('On a scale 1 to 5, 1 negative, and 5 a positive addition.\n\nHow did the game impact')
+        ##############################################################CONTINUE HERE
 
 clear() #This is the game! just kidding, it is all locked in scene functions...
 print('This is the story of a man named Stanley.')
