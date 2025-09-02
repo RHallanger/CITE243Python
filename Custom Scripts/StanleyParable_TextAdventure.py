@@ -11,6 +11,8 @@ broomDead = False
 blueCheck = 0
 workCheck = 0
 redCheck = 0
+indecisionScore = 0
+meetingCheck = False
 exceptCatch = False
 
 ################################### Functions ###############################
@@ -1234,6 +1236,7 @@ def workLoop(text, key):
 def sceneStart():
     global loopCheck
     global broomClosetCheck
+    global meetingCheck
     clear()
     sleep(3)
     nar('Something was very clearly wrong.') #Something's wrong, that's what it felt like anyway. I watched all of the endless 8...
@@ -1289,9 +1292,7 @@ def sceneStart():
     clear()
     match choice: #Left or Right Results
         case 1: #Left door
-            nar('Yet there was not a single person here either.')
-            nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
-            nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
+            meetingCheck = True
             scenePostMeeting()
 
         case 2: #Right door
@@ -1692,28 +1693,32 @@ def scenePostMeeting():
     global loopCheck
     global broomDead
     global broomClosetCheck
+    global meetingCheck
+
+    if meetingCheck == True:
+        meetingCheck = False
+        nar('Yet there was not a single person here either.')
+        nar('Feeling a wave of disbelief.\nStanley decided to go up to his boss\'s office hoping he might find an answer there.')
+        nar('Coming to a staircase, Stanley walked upstairs to his boss\'s office.')
 
     if broomDead == 1:
         nar('Ah, second player!')
         nar('It\'s good to have you on board.')
         nar('I guarantee you can\'t do any worse than the person who came before you.')
         broomDead = 2
-        pass
-    else:
-        pass
 
     choice = 0
 
     if broomClosetCheck == 4:
             while choice not in [1,2]: #Next Room Decision from the meeting room
-            print('Where does Stanley go now?')
-            print('\n\n1) Upstairs\n\n2) Downstairs\n\n')
+                print('Where does Stanley go now?')
+                print('\n\n1) Upstairs\n\n2) Downstairs\n\n')
 
-            choice = excepter(choice)
+                choice = excepter(choice)
 
-            if choice not in [1,2]:
-                loopCheck += 1
-                looper()
+                if choice not in [1,2]:
+                    loopCheck += 1
+                    looper()
 
     else:
         while choice not in [1,2,3]: #Next Room Decision from the meeting room
@@ -1877,8 +1882,7 @@ def sceneLounge():
     clear()
     match choice:
         case 1: #Shortcut to Left
-            tbd()
-            #sceneShortcut()
+            sceneConfusion()
 
         case 2: #Warehouse
             sceneWarehouse()
@@ -2285,7 +2289,9 @@ def sceneGames():
     nar('Go ahead Stanley.')
     while choice not in [1,2,3]:
         print('Which door does Stanley choose?')
-        print('1) The Left Door\n\n2) The Right Door\n\n3) The New Door')
+        print('1) The Left Door\n\n2) The Right Door\n\n3) The Righter Door')
+
+        choice = excepter(choice)
 
         if choice not in [1,2,3]:
             loopCheck += 1
@@ -2298,8 +2304,217 @@ def sceneGames():
     nar('Feel free to be honest.\n\nI am looking for some real, critical feedback here.')
     choice = 0
     while choice not in [1,2,3,4,5]:
-        print('On a scale 1 to 5, 1 negative, and 5 a positive addition.\n\nHow did the game impact')
-        ##############################################################CONTINUE HERE
+        print('On a scale 1 to 5,\n\nHow was Stanley\'s experience impacted?')
+
+        choice = excepter(choice)
+
+        if choice not in [1,2,3,4,5]:
+            loopCheck += 1
+            looper()
+
+    clear()
+    match choice:
+        case 1:
+            nar('A one?!?')
+            nar('I mean, I can understand if you had reservations.')
+            nar('You saw ways the game could be improved to fully express itself mechanically and artistically,\nBUT A ONE?!?!')
+            nar('That\'s not even helpful!')
+            nar('What am I supposed to do with that?')
+            nar('Oh, but it isn\'t my place to judge.')
+        case 2:
+            nar('Oh, well, now this is useful.')
+            nar('You didn\'t like it, but you didn\'t totally hate it either.')
+            nar('You endureded it, perhaps, is the correct term.')
+            nar('It didn\'t cause excruciating pain.')
+            nar('Big steps we\'ve made here Stanley.')
+        case 3:
+            nar('Oh, of course.')
+            nar('A three.\n\nReally.')
+            nar('Maybe next time we can get you to form an actual opinion?')
+            nar('You know... any level of critical thinking or engagement with your surroundings?')
+            nar('Does that sound good?')
+            nar('Think we can do that?')
+            nar('Yes?\nHmmmmmmm?')
+            nar('Wonderful.')
+        case 4:
+            nar('Okay, so we\'re getting somewhere.')
+            nar('Clearly , there\'s something here that speaks to you.')
+            nar('If I can be honest here,\nI really don\'t have any idea where I\'m going with this.')
+            nar('This whole door thing was just a stab in the dark.')
+            nar('But, I guess you\'re into it, so let\'s keep this party train rolling.')
+        case 5:
+            nar('Aha! You see?')
+            nar('I knew I was onto something!')
+            nar('Where do these flashes of inspiration come from?')
+            nar('How did I know the game needed a third door?')
+            nar('Well, it\'s instinct mostly...\nA calling in your gut.')
+            nar('I really couldn\'t say where the idea came from, except that I...')
+            nar('I felt it in my soul.')
+            nar('You can\'t teach that, Stanley.')
+            nar('Don\'t even try.')
+
+    nar('Here, based on the data from your previous playthrough, I\'ve compiled a new version.')
+    nar('And to be perfectly candid, I think I\'ve knocked it out of the park with this one.')
+    nar('Let\'s take a look.')
+    sceneScoreBoard()
+
+def sceneScoreBoard():
+    global indecisionScore
+    choice = 0
+    while choice not in [1,2,3]:
+        print(f'Stanley has failed to make a decision ' + str(indecisionScore) + ' times.')
+        if indecisionScore <= 5:
+            print('Rank: Decisive Daisy')
+        elif indecisionScore <= 25:
+            print('Rank: Indecisive Cadet')
+        elif indecisionScore <=50:
+            print('Rank: Indecisive Seargent')
+        elif indecisionScore <= 100:
+            print('Rank: Indecisive General')
+        elif indecisionScore <= 200:
+            print('Rank: Indecisive Singularity')
+        else:
+            print('Rank: I can\'t choose what rank to go next...')
+        print('\n\n\n\n\nWhich door does Stanley choose?')
+        print('1) The Left Door\n\n2) The Right Door\n\n3) The Righter Door')
+
+        try:
+            choice = int(input('> '))
+
+        except:
+            clear()
+            indecisionScore += 1
+            sceneScoreBoard()
+
+        if choice not in [1,2,3]:
+            clear()
+            indecisionScore += 1
+            sceneScoreBoard()
+    clear()
+    nar('Now would you say that the competitive rankings helped you feel motivated to not make a decision?')
+    nar('Again, honest answers, please.')
+    choice = 0
+    while choice not in [1,2,3,4,5]:
+        print('On a scale 1 to 5,\n\nHow was Stanley\'s experience impacted?')
+
+        choice = excepter(choice)
+
+        if choice not in [1,2,3,4,5]:
+            loopCheck += 1
+            looper()
+    clear()
+    nar('Oh, I nearly forgot!')
+    nar('I\'ve got a prototype of a new game I\'ve been working on,\nand now would be a lovely opportunity to give it some play testing.')
+    nar('You wouldn\'t mind taking a look at it, would you?')
+    nar('Perfect, let me boot it up.') #I uhh, am not creative enough to get this part to work. I would like to replicate it, but ehhhhh don't want to put in that effort.
+    sceneStart()
+
+def sceneConfusion():
+    global loopCheck
+    nar('And so he detoured through the maintenance section.')
+    nar('Walked straight ahead to the opposite door, and got back on track.')
+    choice = 0
+    while choice not in [1,2]:
+        print('Where does Stanley go?')
+        print('1) Door\n\n2) Elevator')
+
+        choice = excepter(choice)
+
+        if choice not in [1,2]:
+            loopCheck += 1
+            looper()
+
+    clear()
+    match choice:
+        case 1: #Back on track
+            meetingCheck = True
+            scenePostMeeting()
+
+        case 2: #Confusion Ending
+            pass
+
+    nar('But Stanley didn\'t want to get back to the office,\nHe wanted to wander about and get even further off track.')
+    nar('So now, in order to go back, he needed to go...')
+    nar('Ummm...\n\nUh...')
+    nar('Hmmm hmmm hmmmhmmm')
+    nar('From here, it\'s um... left.')
+    nar('Oh, no, no.\n\nIt\'s to the right, my mistake.')
+    nar('No! No, no, no!')
+    nar('Not the right!\/Why would I have ever said that it was to the right?')
+    nar('What was I thinking?')
+    nar('It\'s clearly...\nOh dear, would you hold on for a minute, please?')
+    nar('Now, let\'s see...\nWe went, um...')
+    nar('Right, left, down, left, right...')
+    nar('Ah yep!\n\nOkay, okay, yes!')
+    nar('I\'ve got it now!')
+    nar('This story is absolutely, definitely, this way.')
+    nar('Now the monitors jumped to life, their true nature revealed.')
+    nar('Each bore the number of an employee in the building.\n\nStanley\'s co-workers.')
+    nar('NO!\nNo!\n\nNo, no, no, no, no, no!')
+    nar('This isn\'t right at all!')
+    nar('You aren\'t supposed to be here yet, this is all a spoiler!')
+    nar('Quick, Stanley, close your eyes!')
+    nar('Okay, okay, okay, okay.')
+    nar('We just... we just have to get back to, um...')
+    nar('Oh... Who am I kidding?')
+    nar('It\'s all rubbish now.')
+    nar('The whole story... completely unusable.')
+    nar('How about rather than waste my time trying to salvage this nonsense,\nwe\'ll just restart the game from the beginning.')
+    nar('And this time, suppose we don\'t wander so far off-track, hmm?')
+    nar('Okay, from the top!')
+    sleep(3)
+    nar('Something was very clearly wrong.')
+    nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
+    nar('But as he came to his wits and regained his senses.')
+    nar('He got up from his desk and stepped out of his office.')
+    nar('All of his co-workers were gone.\nWhat could it mean?')
+    nar('Stanley decided to go to the meeting room.\n\nPerhaps he had simply missed a memo.')
+    nar('When Stanley- wait.... wait, what?')
+    nar('No, I... no, I restarted!')
+    nar('I swear I definitley restarted the game over, completely fresh, everything should be...')
+    nar('Or, did something change?')
+    nar('Stanley, did you change anthing when we were back in that room with all the monitors?')
+    nar('Did you move the story somewhere, or...')
+    nar('Hold on, why am I asking you?')
+    nar('I\'m the onw who wrote the story.')
+    nar('It was right here a minute ago.')
+    nar('I know for sure that it\'s here somewhere.')
+    nar('Okay, then, it\'s an adventure!')
+    nar('Come, Stanley, let\'s find the story!')
+    choice = 0
+    searchLoop = 0
+    while True:
+        clear()
+        print('Which door does Stanley choose?')
+        print('1) Door\n\n2) Door\n\n3) Door\n\n4) Door\n\n5) Door\n\n6) Door\n\n7) Door\n\n8) Door\n\n9) Door\n\n10) Door') #8
+        choice = input('> ')
+        if searchLoop >= 10:
+            break
+        seachLoop += 1
+
+    nar('I\'ll say it...')
+    nar('This is the worst adventure I\'ve ever been on.')
+    nar('I can promise you, there definitely was a story here before.')
+    nar('Do we just...\nDo we need to restart the game again?')
+    nar('Well, I find it unlikely that we\'ll ever progress by starting over and over again.')
+    nar('But it\'s got to be better than tis.')
+    nar('Okay, let\'s give it a shot.\n\nWhy not?')
+    sleep(3)
+    nar('Something was very clearly wrong.')
+    nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
+    nar('But as he came to his wits and regained his senses.')
+    nar('He got up from his desk and stepped out of his office.')
+    nar('All of his co-workers were gone.\nWhat could it mean?')
+    nar('Stanley decided to go to the meeting room.\n\nPerhaps he had simply missed a memo.')
+    nar('Okay, yep,  it\'s worse.')
+    nar('I might be remembering this wrong.')
+    nar('It\'s possible the story is back where we just came from.')
+    nar('Why don\'t we go back the other direction and see if we missed anything?')
+    nar('Aha! I knew we\'d miss something!')
+    nar('The story!')
+    nar('Here it comes!')
+    nar('No, wait, nevermind, not the stoey.')
+    nar('Okay, let\'s head back the other way and retrace our steps.')
 
 clear() #This is the game! just kidding, it is all locked in scene functions...
 print('This is the story of a man named Stanley.')
