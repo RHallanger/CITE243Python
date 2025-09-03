@@ -1223,7 +1223,15 @@ def sceneStart():
     global broomClosetCheck
     global meetingCheck
     clear()
-    sleep(3)
+    print('Loading.')
+    sleep(1)
+    clear()
+    print('Loading..')
+    sleep(1)
+    clear()
+    print('Loading..!')
+    sleep(1)
+    clear()
     nar('Something was very clearly wrong.') #Something's wrong, that's what it felt like anyway. I watched all of the endless 8...
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
@@ -1256,7 +1264,7 @@ def sceneStart():
             sceneReluctant()
 
     choice = 0
-    nar('When Stanley came to a set of two open doors, he enetered the door on his left.')
+    nar('When Stanley came to a set of two open doors, he entered the door on his left.')
 
     while choice not in [1,2]: #Left or Right Decision
         print('What door does Stanley enter?')
@@ -1486,7 +1494,7 @@ def sceneInsanity():
     nar('"None of it made any logical sense."')
     nar('And as Stanley pondered this, he began to make other strange observations.')
     nar('For example, why couldn\'t he see anything but text?')
-    nar('Why is he not allowed to go back on a decision?')
+    nar('Why is he not allowed to just leave?')
     nar('"No," Stanley said to himself.\n\n"This is all too strange."\n\n"This can\'t be real."')
     nar('And at last he came to the conclusion that had been on the tip of his tongue.\nHe just hadn\'t found the words for it.')
     nar('"I\'M DREAMING!" He yelled.')
@@ -1642,14 +1650,14 @@ def sceneEscapeRoute():
     nar('No.\n\nPerhaps not.')
     nar('Sometimes these things cannot be seen.')
     nar('But listen to me, you can still save these two.')
-    nar('You can stop the program before theyboth fail.')
+    nar('You can stop the program before they both fail.')
     nar('Click the \'x\' and quit.')
     nar('There\'s no other way to beat this game.')
     nar('As long as you move forward, you will be walking someone else\'s path.')
     nar('Stop now and be your only true choice.\n\nWhatever you do choose it, don\'t let time choose for you.')
     nar('DON\'T LET TIME-')
     sleep(999)
-    quit()
+    sceneStart()
 
 def sceneMindControlSplit():
     global loopCheck
