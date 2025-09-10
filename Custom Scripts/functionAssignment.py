@@ -5,9 +5,9 @@ logging.disable()
 
 #Collatz performs the functions to reduce a number to 1
 def collatz(number):
-    print(f' {number} ')
-    if number == 0:
-        print('0 is not a parseable whole number.')
+    print(number)
+    if number <= 0:
+        print(str(number) + ' is not a parseable whole number.')
         userNum = 0
         userInputLoop()
     if number % 2 == 0: #If the number is a factor of 2, divide by 2
