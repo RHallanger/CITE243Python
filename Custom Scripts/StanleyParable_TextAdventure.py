@@ -1215,6 +1215,19 @@ def workLoop(text, key):
     else:
         workCheck += 1
         sceneWork()
+
+def fakeLoad():
+    clear()
+    print('The End is Never ' * 5 + ' The End is Loading.')
+    sleep(1)
+    clear()
+    print('The End is Never ' * 5 + ' The End is Loading..')
+    sleep(1)
+    clear()
+    print('The End is Never ' * 5 + 'The End is Loading..!')
+    sleep(1)
+    clear()
+
 ################## SCENES MANAGER! ##########################
 
 ########## LEFT PATH SCENES ###########
@@ -1222,16 +1235,7 @@ def sceneStart():
     global loopCheck
     global broomClosetCheck
     global meetingCheck
-    clear()
-    print('Loading.')
-    sleep(1)
-    clear()
-    print('Loading..')
-    sleep(1)
-    clear()
-    print('Loading..!')
-    sleep(1)
-    clear()
+    fakeLoad()
     nar('Something was very clearly wrong.') #Something's wrong, that's what it felt like anyway. I watched all of the endless 8...
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
@@ -2404,7 +2408,7 @@ def sceneScoreBoard():
 
 def sceneConfusion():
     global loopCheck
-    wordLine = 'The Line\u2122'
+    tm = '\u2122'
     nar('And so he detoured through the maintenance section.')
     nar('Walked straight ahead to the opposite door, and got back on track.')
     choice = 0
@@ -2456,7 +2460,7 @@ def sceneConfusion():
     nar('How about rather than waste my time trying to salvage this nonsense,\nwe\'ll just restart the game from the beginning.')
     nar('And this time, suppose we don\'t wander so far off-track, hmm?')
     nar('Okay, from the top!')
-    sleep(3)
+    fakeLoad()
     nar('Something was very clearly wrong.')
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
@@ -2494,7 +2498,7 @@ def sceneConfusion():
     nar('Well, I find it unlikely that we\'ll ever progress by starting over and over again.')
     nar('But it\'s got to be better than this.')
     nar('Okay, let\'s give it a shot.\n\nWhy not?')
-    sleep(3)
+    fakeLoop()
     nar('Something was very clearly wrong.')
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
@@ -2526,16 +2530,16 @@ def sceneConfusion():
     nar('Some people win fair and square and this was not one of those situations.')
     nar('Okay, I\'m getting weirded out by whatever this place is.')
     nar('I don\'t care what might happen this time, I have to restart.')
-    sleep(3)
+    fakeLoad()
     nar('Something was very clearly wrong.')
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
     nar('He got up from his desk and stepped out of his office.')
     nar('Alright, I\'ve got a solution.')
-    nar('This time, to make sure we don\'t get lost, I\'ve employed the help of The Stanley Parable Adventure Line\u2122!')
-    nar(f'Just follow {wordLine};\n\nHow simple is that?')
+    nar(f'This time, to make sure we don\'t get lost, I\'ve employed the help of The Stanley Parable Adventure Line{tm}!')
+    nar(f'Just follow The Line{tm};\n\nHow simple is that?')
     nar('You see?')
-    nar(f'{wordLine} knows where the story is,\nIt\'s over in this direction!')
+    nar(f'The Line{tm} knows where the story is,\nIt\'s over in this direction!')
     nar('Onward, Stanley, to destiny!')
     nar('Though here\'s a thought.')
     nar('Wouldn\'t wherever we end up be our destination, even if there is no story there?')
@@ -2550,24 +2554,24 @@ def sceneConfusion():
     nar('Not sure where I as going with all that.')
     nar('Wait, we\'re... we\'re back at the office?!')
     nar('No!\n\nNo, no!')
-    nar('Line\u2122, you do know we\'re looking for The Stanley Parable, right?')
+    nar(f'Line{tm}, you do know we\'re looking for The Stanley Parable, right?')
     nar('The story?')
     nar('Is any of this ringing a bell?')
-    nar(f'Did we make a mistake following {wordLine}?')
+    nar(f'Did we make a mistake following The Line{tm}?')
     nar('Perhaps we could have found the story on our own.')
     nar('Oh, no, no, no, no not again!')
-    nar('Line\u2122, how could you have donw this to us, and after we trusted you!')
+    nar(f'Line{tm}, how could you have donw this to us, and after we trusted you!')
     nar('After everything we\'ve beem through,\nyou- oh...')
     nar('I can\'t take this anymore.')
     nar('To hell with it.')
     nar('Restart.')
-    sleep(3)
+    fakeLoad()
     nar('Something was very clearly wrong.')
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
     nar('He got up from his desk and stepped out of his office.')
     nar('You know what, Stanley?')
-    nar('I say forget The Adventure Line\u2122, what has it ever done for us?')
+    nar(f'I say forget The Adventure Line{tm}, what has it ever done for us?')
     nar('We\'re intelligent people, right?')
     nar('Why can\'t we make up our own story?')
     nar('Something exciting, daring, mysterious...')
