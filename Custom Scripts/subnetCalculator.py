@@ -160,3 +160,4 @@ match showBits: #Revert networkBits into binary digits...
         maskList[skipBits] = 128
 
 print('Subnet Mask: ' + addDisplay(maskList))
+input('\nPress any button to continue...')
