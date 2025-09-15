@@ -5,9 +5,9 @@ logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s -  %(levelname)s -
 logging.disable()
 
 #################LISTS and DICTIONARIES
-player_inventory = {'arrows': 12, 'gold coins': 42, 'rope': 1, 'torch': 6, 'dagger': 1, 'dubious meat': 999}
-cultist_table = []
-dragon_table = []
+player_inventory = {'arrow': 12, 'gold coin': 42, 'rope': 1, 'torch': 6, 'dagger': 1}
+cultist_table = ['enchanted gemstone', 'ruby', 'dagger', 'gold coin', 'gold coin', 'gold coin'] #chance to get 1 of these items, gold coin is very likely... I think Runescape handles droprates like this in typescript
+dragon_table = ['dragon dagger', 'dragon sword', 'dragon chainbody', 'dragon battle-axe']
 
 #################Functions
 def display_inventory(inventory_ID):
@@ -36,4 +36,18 @@ def display_inventory(inventory_ID):
 
     print('Total Items: ' + str(item_total) + '/255')
 
-display_inventory(player_inventory)
+def player_action(opponent):
+    option = ''
+    while option not in ['inventory', 'attack']:
+        option = input()
+
+def slay(inventory_ID, creature_table):
+    pass
+
+
+
+print('Hello and welcome to a quick adventure game.')
+print('Objective: Collect four enchanted gemstones from slaying cultists.')
+print('\nSetting: You, the player, are on a quest to slay The Terror of Evensborough, a terrible dragon.\nWhile enroute, dragon cultists burst from the shades ready to attack.\nThe light retracts to show what could only be described as an army of cultists.')
+print('\n\nAction: What will you do? [Player can input: {inventory or attack}]')
+def player_action(opponent)
