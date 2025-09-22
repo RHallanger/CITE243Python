@@ -1,21 +1,17 @@
 import re
 import getpass
 
-'''
-Password rules:
-- Must have 8 or more characters included.
-- Must contain an uppercase and a lowercase character.
-- At least 1 digit
-- At least 1 special character
-'''
+################# PREDEFINED VARIABLES #######################
 
 attempts = 0
+
+################ DEFINITIONS #########################
 
 ###cli function is just to ease formating to mimic something like CiscoIOS
 def cli(text):
     print('\nNon-USG_System' + text)
 
-###
+###Gets a username, does not care as long as it isn't admin or administrator
 def usernameLoop():
     global attempts
     username = input('\nNon-USG_System (Username)> ')
@@ -30,6 +26,7 @@ def usernameLoop():
             usernameLoop()
     return username
 
+###Meat and bones of creating a password and not revealing it.
 def newPassLoop():
     checkFail = False
     specials = re.compile(r'!|@|#|\$|%|\^|&|\*')
@@ -83,6 +80,7 @@ def newPassLoop():
         print(username + '@Non-USG_System> New password has been accepted...')
         cliSelector()
 
+#Mimics a command line interface with only 3 options, can expand if wanted.
 def cliSelector():
     global username
     commands = [
@@ -105,6 +103,7 @@ def cliSelector():
             print('Use \'help\' to see all available commands.')
             cliSelector()
 
+################### Start of program #####################
 print('''
 ###############################################################
 #                        WARNING!                             #
