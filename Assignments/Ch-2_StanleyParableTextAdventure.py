@@ -2471,7 +2471,7 @@ def sceneConfusion():
     nar('No, I... no, I restarted!')
     nar('I swear I definitley restarted the game over, completely fresh, everything should be...')
     nar('Or, did something change?')
-    nar('Stanley, did you change anthing when we were back in that room with all the monitors?')
+    nar('Stanley, did you change anything when we were back in that room with all the monitors?')
     nar('Did you move the story somewhere, or...')
     nar('Hold on, why am I asking you?')
     nar('I\'m the one who wrote the story.')
@@ -2489,6 +2489,7 @@ def sceneConfusion():
         if searchLoop >= 10:
             break
         searchLoop += 1
+        nar('There was nothing there...')
 
     clear()
     nar('I\'ll say it...')
@@ -2560,8 +2561,8 @@ def sceneConfusion():
     nar(f'Did we make a mistake following The Line{tm}?')
     nar('Perhaps we could have found the story on our own.')
     nar('Oh, no, no, no, no not again!')
-    nar(f'Line{tm}, how could you have donw this to us, and after we trusted you!')
-    nar('After everything we\'ve beem through,\nyou- oh...')
+    nar(f'Line{tm}, how could you have done this to us, and after we trusted you!')
+    nar('After everything we\'ve been through,\nyou- oh...')
     nar('I can\'t take this anymore.')
     nar('To hell with it.')
     nar('Restart.')
