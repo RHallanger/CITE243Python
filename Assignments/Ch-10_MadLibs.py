@@ -91,20 +91,26 @@ print('\n' + madLib)
 ### If madlib_output.txt already exists, we will prompt the user to verify if they want it to be overwritten or if they would like to quit the program to rename their last outputted prompt.
 madOut = Path(Path.cwd()/'madlib_output.txt')
 if madOut.is_file():
-    while option not in ['yes', 'no']:
+    while option not in ['yes', 'no', 'y', 'n']:
         print('madlib_output.txt is about to be overwritten...')
         print('Would you like to continue?')
-        option = input('(Yes/No): ')
+        option = input('([Y]es/[N]o): ')
         option = option.lower()
         match option:
             case 'yes':
                 with open('madlib_output.txt', 'w') as file:
                     file.write(madLib)
+            case 'y':
+                with open('madlib_output.txt', 'w') as file:
+                    file.write(madLib)
             case 'no':
                 input('Closing program, please rename madlib_output.txt before using this program again.')
                 quit()
+            case 'n':
+                input('Closing program, please rename madlib_output.txt before using this program again.')
+                quit()
             case _:
-                input('User must input full "yes" or "no".')
+                input('User must input "Yes" or "No".')
 ### Again, the file doesn't exist, so we will just create one.
 else:
     with open('madlib_output.txt', 'w') as file:
