@@ -2498,7 +2498,7 @@ def sceneConfusion():
     nar('Well, I find it unlikely that we\'ll ever progress by starting over and over again.')
     nar('But it\'s got to be better than this.')
     nar('Okay, let\'s give it a shot.\n\nWhy not?')
-    fakeLoop()
+    fakeLoad()
     nar('Something was very clearly wrong.')
     nar('Shocked, frozen solid, Stanley found himself unable to move for the longest time.')
     nar('But as he came to his wits and regained his senses.')
