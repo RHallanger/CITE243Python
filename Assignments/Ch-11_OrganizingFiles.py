@@ -46,10 +46,10 @@ for i in range(random.randint(1,10)):
 ### Part 2: MAKE THE KEY
 # I need a random checker to verify that a {i} folder exists and add the key into it,
 # it needs to be random or else it wouldn't be fun.
-keyFolder = (home/'spam'/str(random.randint(1,50)))
+keyFolder = (home/'spam'/str(random.randint(1,10)))
 # This will keep re-rolling what folder to check until it finds a created folder
 while not keyFolder.exists():
-    keyFolder = (home/'spam'/str(random.randint(1,50)))
+    keyFolder = (home/'spam'/str(random.randint(1,10)))
 logging.debug(str(keyFolder) + ' has been selected to host the key.')
 keyText = 'Ohhh dear, you hath foundeth me and my queenly .txt contents.\nAs the ruler of the spam files, please do not put me in the /spam/key folder.'
 # We have found a random folder to implement the key into
