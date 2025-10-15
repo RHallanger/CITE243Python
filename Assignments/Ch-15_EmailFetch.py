@@ -39,3 +39,4 @@ emailsFiltered.remove('Email Address')
 print('Emails found in responses:')
 for i in emailsFiltered:
     print(i)
+input()
