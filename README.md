@@ -31,3 +31,9 @@ and my own programs to meet class assignment requirements in CITE 243 at North I
 
 ### Chapter 11 - Organizing Files
 `Ch-11_OrganizingFiles` - Had to create a program that creates and removes folders and files. So, it is a simple game that requires you to move a file with specific text to a specific location. It doesn't have any real sanity checks to restrict the potential impacts this can have, but if it affects anything serious, it was on the user's part.
+
+### Chapter 13 - Web Scraping
+`Ch-13_2048Spammer` - A simple program that opens play2048.co in Firefox and follows a simple loop until it detects failure.
+
+### Chapter 14 & 15 - Excel Spreadsheets & Google Sheets
+`Ch-15_EmailFetch.py` performs a simple API fetch to a Google Sheet to gather email responses to a Google Forms.
