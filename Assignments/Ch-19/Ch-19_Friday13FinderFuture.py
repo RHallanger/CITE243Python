@@ -30,4 +30,4 @@ def nextFridayScan(todayVar):
 		dayWeekVar = todayVar.strftime("%A")
 
 nextFridayScan(todayVar)
-input('Press enter to continue...')
+input('Press any key to continue . . .')
