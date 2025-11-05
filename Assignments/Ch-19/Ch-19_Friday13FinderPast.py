@@ -14,20 +14,39 @@ are installed before execution.
 import datetime
 import time
 
-dayWeekVar = time.strftime("%A")
 todayVar = datetime.datetime.now()
-scanDelta = datetime.timedelta(days=-1)
-
-print(todayVar)
+scanDeltaDays = datetime.timedelta(days=-1)
 
 def nextFridayScan(todayVar):
 	fridayCounter = 0
-	while fridayCounter < 10:
+	todayPrint = todayVar.strftime("%B %Y")
+	while todayVar.year >= 1:
 		if todayVar.day == 13 and dayWeekVar == "Friday":
-			print("Found Friday the 13th on: ", todayVar)
+			if fridayCounter < 10:
+				print("Found Friday the 13th in: ", todayPrint)
+			elif fridayCounter == 10:
+				print("""
+-------------------------------------------------
+Closest 10 Friday the 13ths have been detailed
+-------------------------------------------------
+
+-------------------------------------------------
+Finding months with Friday the 13th until year 1
+-------------------------------------------------
+				""")
+				print("Friday the 13th found in: ", todayPrint)
+			else:
+				print("Friday the 13th found in: ", todayPrint)
 			fridayCounter += 1
-		todayVar += scanDelta
-		dayWeekVar = todayVar.strftime("%A")
+		try:
+			todayVar += scanDeltaDays
+			todayYear = todayVar.strftime("%Y")
+			todayMonth = todayVar.strftime("%B")
+			todayPrint = todayMonth + " " + todayYear.lstrip('0')
+			dayWeekVar = todayVar.strftime("%A")
+		except:
+			break
+
 
 nextFridayScan(todayVar)
 input('Press any key to continue . . .')
