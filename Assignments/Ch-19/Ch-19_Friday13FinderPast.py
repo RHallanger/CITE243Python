@@ -4,7 +4,7 @@ Program Name: Firday the 13th Finder Past
 Author: Robert Hallanger
 Date: 2025-11-3
 Description:
-This program performs a quick search for the prior 10 Friday the 13th.
+This program performs a quick search for the prior 10 Friday the 13ths.
 
 Usage:
 Run the script using Python 3.13. Ensure all dependencies
